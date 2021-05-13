@@ -1,0 +1,31 @@
+.searchbar{
+    display: flex;
+    margin-top:30px;
+    margin-left: 20px;
+}
+
+.searchInput{
+    width: 600px;
+}
+
+.searchComponent{
+    display: flex;
+}
+
+.btn-success{
+    margin-left: 30px;
+}
+
+.tile{
+    border: 1px solid black
+}
+
+::ng-deep .mat-grid-tile .mat-figure{
+    margin:30px;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+
+.list{
+    margin: 20px;
+}

@@ -1,0 +1,39 @@
+.searchbar{
+    display: flex;
+    margin-left: 100px;
+}
+
+.searchInput{
+    width: 600px;
+}
+
+.searchComponent{
+    display: flex;
+}
+
+.btn-success{
+    margin-left: 30px;
+}
+
+.navbar-brand{
+    margin-left: 10px;
+}
+
+.matMenu{
+    margin-top: -20px;
+    margin-left:90%;
+    position: absolute;
+    background-color: lightsteelblue;
+}
+.menuItems{
+    margin-left: 900px;
+    margin-top:0px;
+    position: fixed;
+}
+
+::ng-deep .mat-menu-panel{
+    position:fixed;
+    margin-left: 90%;
+    margin-top: -42.5%;
+    background-color: gray;
+}

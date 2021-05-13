@@ -1,0 +1,26 @@
+<div  class="searchbar">
+          <div class="searchComponent">
+          <input class="form-control  searchInput" type="search" placeholder="Search by Name, Email and Company Name" aria-label="Search" [(ngModel)]="searchText" [ngModelOptions]="{standalone: true}" (ngModelChange)="searchBar($event)">
+          <button class="btn btn-success" (click)="searchUser()" >Search</button>
+          </div>
+</div>
+
+<mat-grid-list cols="3" rowHeight="200px" class="list" [gutterSize]="'50px'">
+  <mat-grid-tile *ngFor="let card of auth.usersData;index as i" class="tile">
+    <mat-card class="dashboard-card">
+      <mat-card-header>
+        Hello World
+        {{card.name}}
+      </mat-card-header>
+      <mat-card-content fxLayout="column" fxLayoutAlign="center">
+        <div>
+        <!-- <img src={{card.IMGPath}}> -->
+        </div>
+        
+        <div>
+        <a mat-raised-button color="primary" >{{card.ButtonLabel}}</a>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>

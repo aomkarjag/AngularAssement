@@ -1,0 +1,61 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Zycus</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div>
+      <div *ngIf="auth.signedIn">
+        <button mat-icon-button [matMenuTriggerFor]="menu" class="matMenu"> 
+            <!-- <mat-icon></mat-icon> -->
+            {{auth.loggedInUserInitials}}
+          </button>
+          
+          <mat-menu #menu="matMenu" class="menuItems"> 
+            <button mat-menu-item>
+              <span>Profile Data</span>
+            </button>
+            <button mat-menu-item disabled>
+              <span>Check voicemail</span>
+            </button>
+            <button mat-menu-item>
+              <span (click)="Logout()">Logout</span>
+            </button>
+          </mat-menu>
+          </div>
+</div>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+       <div *ngIf="showSearchBarOptions"> 
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Dropdown
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">Disabled</a>
+        </li>
+      </ul>
+      </div>
+      <div *ngIf="auth.showSearchBar" class="searchbar">
+      <form class="form-inline">
+        <div class="searchComponent">
+        <input class="form-control  searchInput" type="search" placeholder="Search" aria-label="Search" [(ngModel)]="searchText" [ngModelOptions]="{standalone: true}">
+        <button class="btn btn-success" type="submit">Search</button>
+        </div>
+      </form>
+      </div>
+    </div>
+  </nav>
