@@ -7,7 +7,7 @@ import { retry, catchError } from 'rxjs/operators'
   providedIn: 'root'
 })
 export class AuthServiceService {
-  userId:Number
+  userId:number
   usersData:any=[]
   signedIn:boolean=false;
   errorMessage:string="";
@@ -79,5 +79,9 @@ handleError(error: HttpErrorResponse) {
 
    getPosts(){
     return this.http.get("https://jsonplaceholder.typicode.com/posts").pipe(retry(3))
+  }
+
+  getAlbums(){
+    return this.http.get("https://jsonplaceholder.typicode.com/albums").pipe(retry(3))
   }
 }
