@@ -11,10 +11,13 @@ export class ProfileAlbumComponent implements OnInit {
   name:String=''
   constructor(public auth:AuthServiceService) { 
     this.albums$=this.auth.getAlbums()
+    this.name=this.auth.usersData.forEach(async element => {
+      return await  this.auth.userId===element.userId?element.name:''
+    });
   }
 
   ngOnInit() {
-    this.name=this.auth.usersData[this.auth.userId].name
+ 
 
   }
 

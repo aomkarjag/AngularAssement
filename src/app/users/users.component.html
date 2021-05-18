@@ -1,17 +1,20 @@
-<div  class="searchbar">
+<app-header (searchValue)='vvalue($event)'></app-header>
+<!-- <div  class="searchbar">
           <div class="searchComponent">
           <input class="form-control  searchInput" type="search" placeholder="Search by Name, Email and Company Name" aria-label="Search" [(ngModel)]="searchText" [ngModelOptions]="{standalone: true}" (ngModelChange)="searchBar($event)">
-          <button class="btn btn-success" (click)="searchUser()" >Search</button>
+          <button class="btn btn-success" >Search</button>
           </div>
-</div>
+</div> -->
 
 <mat-grid-list cols="3" rowHeight="200px" class="list" [gutterSize]="'50px'">
   <mat-grid-tile *ngFor="let card of auth.usersData;index as i" class="tile">
     <mat-card class="dashboard-card">
-      <mat-card-header>
-        Hello World
-        {{card.name}}
-      </mat-card-header>
+      <mat-card-content>
+        <b>Name</b> : {{card.name}}
+      </mat-card-content>
+      <mat-card-content><b>Email</b> : {{card.email}}</mat-card-content>
+      <mat-card-content><b>Phone</b> : {{card.phone}}</mat-card-content>
+
       <mat-card-content fxLayout="column" fxLayoutAlign="center">
         <div>
         <!-- <img src={{card.IMGPath}}> -->
@@ -20,8 +23,9 @@
         <div>
         <a mat-raised-button color="primary" >{{card.ButtonLabel}}</a>
         </div>
-        <a (click)="showDetails(card.id)">View Details</a>
+        <a (click)="showDetails(card.id)" class="btn btn-primary profileDetails">View Profile</a>
       </mat-card-content>
     </mat-card>
   </mat-grid-tile>
+  <ng-content></ng-content>
 </mat-grid-list>

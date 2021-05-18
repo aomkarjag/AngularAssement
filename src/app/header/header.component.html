@@ -3,8 +3,8 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div>
-      <div *ngIf="auth.signedIn">
+    <div *ngIf="auth.signedIn" class="logoutMenu">
+      <div >
         <button mat-icon-button [matMenuTriggerFor]="menu" class="matMenu"> 
             <!-- <mat-icon></mat-icon> -->
             {{auth.loggedInUserInitials}}
@@ -18,7 +18,7 @@
               <span>Check voicemail</span>
             </button>
             <button mat-menu-item>
-              <span (click)="Logout()">Logout</span>
+              <span (click)="auth.Logout()">Logout</span>
             </button>
           </mat-menu>
           </div>
@@ -27,22 +27,25 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent" >
        <div *ngIf="auth.showNavbarList"> 
       <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+              <a class="nav-link"  (click)="navigationFunction($event)" name="back">Back Home</a>
+            </li>
         <li class="nav-item active">
-          <a class="nav-link" href="#" routerLink="profile/{{auth.userId}}/detail" routerLinkActive="router-link-active" >Details</a>
+          <a class="nav-link" (click)="navigationFunction($event)" name="details">Details</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#" routerLink="profile/{{auth.userId}}/album" >Albums</a>
+          <a class="nav-link" (click)="navigationFunction($event)" name="album">Albums</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#" routerLink="profile/{{auth.userId}}/posts">Posts</a>
+          <a class="nav-link" (click)="navigationFunction($event)" name="posts">Posts</a>
         </li>
       </ul>
       </div>
       <div *ngIf="auth.showSearchBar" class="searchbar">
       <form class="form-inline">
         <div class="searchComponent">
-        <input class="form-control  searchInput" type="search" placeholder="Search" aria-label="Search" [(ngModel)]="searchText" [ngModelOptions]="{standalone: true}">
-        <button class="btn btn-success" type="submit">Search</button>
+        <input class="form-control  searchInput" type="search" placeholder="Search" aria-label="Search" [(ngModel)]="searchText" [ngModelOptions]="{standalone: true}" (ngModelChange)="searchBar($event)">
+        <button class="btn btn-success" (click)="searchUser()">Search</button>
         </div>
       </form>
       </div>

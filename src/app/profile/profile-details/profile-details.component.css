@@ -37,8 +37,8 @@ button:hover, a:hover {
 }
 
 .main {
-  margin-top: 2%;
-  margin-left: 29%;
+  margin-top: 5%;
+  margin-left: 20%;
   font-size: 28px;
   padding: 0 10px;
   width: 58%;
@@ -76,6 +76,11 @@ button:hover, a:hover {
 .social-media {
   text-align: center;
   width: 90%;
+}
+
+.headings{
+  margin-left:43%;
+  margin-top: 50px;
 }
 
 .social-media span {

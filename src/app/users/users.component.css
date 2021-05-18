@@ -29,3 +29,11 @@
 .list{
     margin: 20px;
 }
+
+.profileDetails{
+    margin-top: 20px;
+    margin-left: 100%;
+    display: table-row;
+    width: 50px 
+}
+

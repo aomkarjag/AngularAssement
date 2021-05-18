@@ -28,11 +28,10 @@ export class LoginComponent implements OnInit {
 
     if(this.model.email && this.model.password){
       const result=await this.auth.checkUserExistence(this.model.email,this.model.password,this.users);
-      
       this.displayErrorMessage=result
-      this.auth.signedIn=true
-      this.auth.showSearchBar=true
-      this.router.navigate(['users'])
+      this.auth.signedIn=result
+      this.auth.showSearchBar=result
+      result?this.router.navigate(['users']):''
     }
   }
   onChange(event){

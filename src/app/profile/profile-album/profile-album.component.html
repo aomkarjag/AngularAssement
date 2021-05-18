@@ -1,8 +1,9 @@
+<app-header></app-header>
 
-<h2>Album By {{name}}</h2>
+<h2 style="align-items: center;margin-left: 50%;">Albums</h2>
 <div  *ngFor="let album of albums$ | async; index as i">
      <div class="card mt-3" *ngIf="auth.userId===album.userId">
       <div class="card-body">
-        <h5 class="card-title"><b>Album {{i}} </b>{{album.title}}</h5>
+        <h5 class="card-title">Title: {{album.title}}</h5>
       </div>
     </div> 

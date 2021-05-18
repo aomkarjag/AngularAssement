@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpErrorResponse } from '@angular/common/http';
+import {  Router } from '@angular/router';
 
 import {  throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators'
@@ -15,7 +16,7 @@ export class AuthServiceService {
   loggedInUser=[];
   showNavbarList:boolean=false
   loggedInUserInitials:string=''
-  constructor(public http:HttpClient) { }
+  constructor(public http:HttpClient,public router:Router) { }
 
 
 handleError(error: HttpErrorResponse) {
@@ -83,5 +84,11 @@ handleError(error: HttpErrorResponse) {
 
   getAlbums(){
     return this.http.get("https://jsonplaceholder.typicode.com/albums").pipe(retry(3))
+  }
+
+  Logout(){
+    sessionStorage.clear();
+    this.signedIn=false;
+    this.router.navigate(["/"])
   }
 }

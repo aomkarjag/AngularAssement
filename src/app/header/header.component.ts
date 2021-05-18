@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewChild } from '@angular/core';
+import { Component, OnInit,ViewChild, Output,EventEmitter } from '@angular/core';
 import { MatMenu } from '@angular/material/menu';
 import {  Router } from '@angular/router';
 import { AuthServiceService } from '../services/auth-service.service';
@@ -11,9 +11,11 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit  {
+  multipleUserData=[]
+  @Output() searchValue=new EventEmitter()
   showSearchBar:boolean=false;
   showSearchBarOptions:boolean=false;
-  searchText:string='';
+  searchText:string;
   selected :string;
   isLoggedIn:boolean=false;
 menuItems: Array<{text: string, elementRef: MatMenu}> = [
@@ -22,11 +24,10 @@ menuItems: Array<{text: string, elementRef: MatMenu}> = [
   ];
   constructor(public router:Router,public auth:AuthServiceService,public route:ActivatedRoute) {
     let userData=JSON.parse(sessionStorage.getItem("UserData"))
-    console.log(userData)
-
    }
 
   ngOnInit() {
+    this.multipleUserData=this.auth.usersData;
     let userData=JSON.parse(sessionStorage.getItem("UserData"))
     if(userData){
       this.isLoggedIn=true
@@ -46,9 +47,37 @@ menuItems: Array<{text: string, elementRef: MatMenu}> = [
     this.selected = pText;
   }
 
-  Logout(){
-    sessionStorage.clear();
-    this.auth.signedIn=false;
-    this.router.navigate(["/"])
+  navigationFunction(event){
+    console.log(event.target.name)
+    switch(event.target.name){
+      case "back":
+      this.auth.showNavbarList=false
+      this.auth.showSearchBar=true
+      this.router.navigate(["users"])
+      break;
+      case "details":
+      this.router.navigate([`profile/${this.auth.userId}/detail`])
+      break;
+      case "album":
+      this.router.navigate([`profile/${this.auth.userId}/album`])
+      break;
+      case "posts":
+      this.router.navigate([`profile/${this.auth.userId}/posts`])
+      break;
+
+    }
+
   }
+
+  searchUser(){
+    this.searchValue.emit(this.searchText)
+  }
+
+  searchBar(event){
+    if(this.searchText===''){
+      this.auth.usersData=this.multipleUserData;
+    }
+  }
+
+  
 }

@@ -14,6 +14,7 @@ export class UsersComponent implements OnInit {
 
   async ngOnInit() {
     this.userData=await this.auth.showUsers()
+    console.log(this.auth.signedIn)
   }
 
 
@@ -23,13 +24,18 @@ export class UsersComponent implements OnInit {
     }
   }
 
-  searchUser(){
-    this.auth.filterUser(this.searchText.toUpperCase());
+  searchUser(event){
+    console.log(event)
   }
 
   showDetails(id){
     this.router.navigate([`profile/${id}/detail`])
     this.auth.hideSearchbar(id)
+  }
+
+  vvalue(obj){
+    this.auth.filterUser(obj.toUpperCase());
+
   }
 
 

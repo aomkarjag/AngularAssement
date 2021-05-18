@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './guard/auth.guard';
+import { HeaderModule } from './header/header.module';
 
 const routes: Routes = [
   {path:"",loadChildren:()=> import("../app/login/login.module").then(m=>m.LoginModule)},
@@ -10,7 +11,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes),HeaderModule],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

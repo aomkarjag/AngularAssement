@@ -9,6 +9,7 @@ import { ProfilePostsComponent } from './profile-posts/profile-posts.component';
 import {PostsComponent} from "./posts/posts.component"
 import { MatCardModule  } from '@angular/material/card';
 import {MatGridListModule}  from '@angular/material/grid-list';  
+import { HeaderModule } from '../header/header.module';
 
 const routes: Routes = [
   {path:"",component:ProfileComponent},
@@ -20,7 +21,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(routes),CommonModule,FormsModule, MatCardModule,
-    MatGridListModule],
+    MatGridListModule,HeaderModule],
   exports: [RouterModule],
   declarations:[ProfileComponent,ProfileDetailsComponent,ProfilePostsComponent,ProfileAlbumComponent,PostsComponent]
 })

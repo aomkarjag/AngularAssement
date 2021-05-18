@@ -5,6 +5,7 @@ import { UsersComponent } from './users.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule  } from '@angular/material/card';
 import {MatGridListModule}  from '@angular/material/grid-list';  
+import { HeaderModule } from '../header/header.module';
 
 
 const productRoutes: Routes = [
@@ -26,7 +27,8 @@ const productRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     MatCardModule,
-    MatGridListModule
+    MatGridListModule,
+    HeaderModule
   ],
   declarations: [UsersComponent]
 })
