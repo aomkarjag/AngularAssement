@@ -1,0 +1,29 @@
+
+
+<div *ngFor="let p of post">
+
+<!-- <h2>{{p.title}}</h2> -->
+
+<!-- <dl class="row">
+  <dt class="col col-6">asdf</dt>
+  <dd class="col col-6">asdf</dd>
+
+  <dt class="col">asdf</dt>
+  <dd class="col">asdf</dd>
+</dl> -->
+
+<!-- <div class="alert alert-primary" role="alert">
+	{{post.intro}}
+</div> -->
+
+ <div class="card mt-3" *ngIf="auth.userId===p.userId">
+	<div class="card-body">
+		<h5 class="card-title">{{p.title}}</h5>
+		<p class="card-text">{{p.body}}</p>
+	</div>
+</div> 
+
+<!-- <div class="alert alert-primary" role="alert">
+	{{post.tags}}
+</div> -->
+</div>

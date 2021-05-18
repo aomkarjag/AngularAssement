@@ -76,4 +76,8 @@ handleError(error: HttpErrorResponse) {
     this.showSearchBar=false;
     this.showNavbarList=true
   }
+
+   getPosts(){
+    return this.http.get("https://jsonplaceholder.typicode.com/posts").pipe(retry(3))
+  }
 }

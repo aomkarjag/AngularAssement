@@ -28,13 +28,13 @@
        <div *ngIf="auth.showNavbarList"> 
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="#" [routerLink]="[':auth.userId/detail']" routerLinkActive="router-link-active" >Details</a>
+          <a class="nav-link" href="#" routerLink="profile/{{auth.userId}}/detail" routerLinkActive="router-link-active" >Details</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#" [routerLink]="[':auth.userId/albums']" >Albums</a>
+          <a class="nav-link" href="#" routerLink="profile/{{auth.userId}}/album" >Albums</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Posts</a>
+          <a class="nav-link" href="#" routerLink="profile/{{auth.userId}}/posts">Posts</a>
         </li>
       </ul>
       </div>
