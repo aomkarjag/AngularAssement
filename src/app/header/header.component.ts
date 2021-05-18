@@ -1,7 +1,8 @@
-import { Component, OnInit,ViewChild, AfterViewInit,OnChanges } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import { MatMenu } from '@angular/material/menu';
 import {  Router } from '@angular/router';
 import { AuthServiceService } from '../services/auth-service.service';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -9,7 +10,7 @@ import { AuthServiceService } from '../services/auth-service.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit, AfterViewInit,OnChanges  {
+export class HeaderComponent implements OnInit  {
   showSearchBar:boolean=false;
   showSearchBarOptions:boolean=false;
   searchText:string='';
@@ -19,30 +20,19 @@ menuItems: Array<{text: string, elementRef: MatMenu}> = [
     {text: "Tabledriven.Item1", elementRef: null },
     {text: "Tabledriven.Item2", elementRef: null},
   ];
-  constructor(public router:Router,public auth:AuthServiceService) {
+  constructor(public router:Router,public auth:AuthServiceService,public route:ActivatedRoute) {
     let userData=JSON.parse(sessionStorage.getItem("UserData"))
     console.log(userData)
 
-   }
-
-  
-   ngOnChanges() {
-    let userData=JSON.parse(sessionStorage.getItem("UserData"))
-    console.log(userData)
-  }
-
-   ngAfterViewInit(){
-    let userData=JSON.parse(sessionStorage.getItem("UserData"))
-    console.log(userData)
    }
 
   ngOnInit() {
-    console.log(this.auth.signedIn)
     let userData=JSON.parse(sessionStorage.getItem("UserData"))
-    console.log(userData)
     if(userData){
       this.isLoggedIn=true
     }
+    let index=this.route.snapshot.paramMap.get("id");
+    console.log(index)
 
   }
 
@@ -57,7 +47,6 @@ menuItems: Array<{text: string, elementRef: MatMenu}> = [
   }
 
   Logout(){
-    console.log("heelo")
     sessionStorage.clear();
     this.auth.signedIn=false;
     this.router.navigate(["/"])

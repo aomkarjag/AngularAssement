@@ -3,7 +3,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UsersRoutingModule } from './users-routing.module';
 
 
-
 @NgModule({
   imports: [
     FormsModule,
@@ -11,5 +10,6 @@ import { UsersRoutingModule } from './users-routing.module';
     UsersRoutingModule
   ],
   providers:[],
+  declarations: [],
 })
 export class UsersModule { }

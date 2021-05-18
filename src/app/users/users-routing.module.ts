@@ -5,15 +5,19 @@ import { UsersComponent } from './users.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule  } from '@angular/material/card';
 import {MatGridListModule}  from '@angular/material/grid-list';  
+import {UsersDetailComponent} from "./users-detail/users-detail.component"
+import {UserAlbumsComponent} from "./user-albums/user-albums.component"
+import {UserPostsComponent} from "./user-posts/user-posts.component"
 
 const productRoutes: Routes = [
   {
     path: '', 
     component: UsersComponent,
-    // children: [
-    //   { path: ':id/detail', component: ProductDetailComponent },
-    //   { path:'', component: ProductListComponent,  }
-    // ]
+    children: [
+      { path: ':id/detail', component: UsersDetailComponent },
+      { path: ':id/albums', component: UserAlbumsComponent },
+      { path: ':id/posts', component: UserPostsComponent },
+    ]
   }
 ]
 
@@ -26,6 +30,6 @@ const productRoutes: Routes = [
     MatCardModule,
     MatGridListModule
   ],
-  declarations: [UsersComponent ]
+  declarations: [UsersComponent,UsersDetailComponent,UserAlbumsComponent,UserPostsComponent]
 })
 export class UsersRoutingModule { }

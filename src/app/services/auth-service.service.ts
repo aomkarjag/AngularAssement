@@ -7,11 +7,13 @@ import { retry, catchError } from 'rxjs/operators'
   providedIn: 'root'
 })
 export class AuthServiceService {
+  userId:Number
   usersData:any=[]
   signedIn:boolean=false;
   errorMessage:string="";
   showSearchBar:boolean=false;
-  loggedInUser=[]
+  loggedInUser=[];
+  showNavbarList:boolean=false
   loggedInUserInitials:string=''
   constructor(public http:HttpClient) { }
 
@@ -59,7 +61,6 @@ handleError(error: HttpErrorResponse) {
   }
 
   filterUser(searchInput){
-    console.log(searchInput);
     let data=[];
     for(let i=0;i<this.usersData.length;i++){
       if(this.usersData[i].email.toUpperCase()==searchInput || this.usersData[i].name.toUpperCase()==searchInput || this.usersData[i].company.name.toUpperCase()==searchInput){
@@ -68,5 +69,11 @@ handleError(error: HttpErrorResponse) {
       }
     }
     this.usersData=data;
+  }
+
+  hideSearchbar(id:number){
+    this.userId=id;
+    this.showSearchBar=false;
+    this.showNavbarList=true
   }
 }
