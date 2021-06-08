@@ -11,12 +11,7 @@ import { HeaderModule } from '../header/header.module';
 const productRoutes: Routes = [
   {
     path: '', 
-    component: UsersComponent,
-    // children: [
-    //   { path: ':id/detail', component: UsersDetailComponent },
-    //   { path: ':id/albums', component: UserAlbumsComponent },
-    //   { path: ':id/posts', component: UserPostsComponent },
-    // ]
+    component: UsersComponent
   }
 ]
 

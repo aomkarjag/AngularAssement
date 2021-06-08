@@ -14,7 +14,6 @@ export class UsersComponent implements OnInit {
 
   async ngOnInit() {
     this.userData=await this.auth.showUsers()
-    console.log(this.auth.signedIn)
   }
 
 
@@ -22,10 +21,6 @@ export class UsersComponent implements OnInit {
     if(this.searchText===''){
       this.auth.usersData=this.userData;
     }
-  }
-
-  searchUser(event){
-    console.log(event)
   }
 
   showDetails(id){

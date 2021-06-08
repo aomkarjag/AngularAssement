@@ -5,5 +5,6 @@
      <div class="card mt-3" *ngIf="auth.userId===album.userId">
       <div class="card-body">
         <h5 class="card-title">Title: {{album.title}}</h5>
+        <a (click)="showPhotos(album.id)" style="cursor:pointer">View Photos</a>
       </div>
     </div> 

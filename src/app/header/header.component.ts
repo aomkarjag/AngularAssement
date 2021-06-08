@@ -33,7 +33,6 @@ menuItems: Array<{text: string, elementRef: MatMenu}> = [
       this.isLoggedIn=true
     }
     let index=this.route.snapshot.paramMap.get("id");
-    console.log(index)
 
   }
 
@@ -48,7 +47,6 @@ menuItems: Array<{text: string, elementRef: MatMenu}> = [
   }
 
   navigationFunction(event){
-    console.log(event.target.name)
     switch(event.target.name){
       case "back":
       this.auth.showNavbarList=false

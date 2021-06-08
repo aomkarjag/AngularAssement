@@ -12,8 +12,6 @@ export class PostsComponent implements OnInit {
   constructor(public auth:AuthServiceService) { }
 
   ngOnInit() {
-    console.log(this.post)
-    console.log(this.auth.userId)
   }
 
 }

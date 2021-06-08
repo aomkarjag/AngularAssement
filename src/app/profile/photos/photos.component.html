@@ -1,0 +1,20 @@
+<app-header></app-header>
+
+<mat-grid-list cols="3" rowHeight="200px" class="list" [gutterSize]="'50px'">
+  <mat-grid-tile *ngFor="let photo of auth.albumPhotos;index as i" class="tile">
+    <mat-card class="dashboard-card">
+      <mat-card-content><b>Title</b> : {{photo.title}}</mat-card-content>
+
+      <mat-card-content fxLayout="column" fxLayoutAlign="center">
+
+        <div>
+        <img src={{photo.url}} height="100px" width="300px">
+        </div>
+        
+        <div>
+        </div>
+        </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+  <ng-content></ng-content>
+</mat-grid-list>

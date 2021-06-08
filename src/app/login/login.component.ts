@@ -24,7 +24,6 @@ export class LoginComponent implements OnInit {
   }
 
   async onSubmit(){
-    console.log(this.model.email,this.model.password,this.users)
 
     if(this.model.email && this.model.password){
       const result=await this.auth.checkUserExistence(this.model.email,this.model.password,this.users);
@@ -32,6 +31,9 @@ export class LoginComponent implements OnInit {
       this.auth.signedIn=result
       this.auth.showSearchBar=result
       result?this.router.navigate(['users']):''
+    }else{
+      this.displayErrorMessage=true
+      this.auth.errorMessage="Invalid! All fields should be filled"
     }
   }
   onChange(event){

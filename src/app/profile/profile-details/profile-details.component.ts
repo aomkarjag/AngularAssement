@@ -12,14 +12,11 @@ export class ProfileDetailsComponent implements OnInit {
   id:number
   user:any=[]
   ngOnInit() {
-    console.log(this.auth.usersData);
     this.id=Number(this.route.snapshot.paramMap.get("id"));
-    console.log(this.id);
     this.getUser(this.id);
   }
 
   getUser(id:number){
     this.user=this.auth.usersData.find(element=>element.id===id)
-    console.log(this.user)
   }
 }

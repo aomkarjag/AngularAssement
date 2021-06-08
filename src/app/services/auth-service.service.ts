@@ -4,10 +4,12 @@ import {  Router } from '@angular/router';
 
 import {  throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators'
+import config from "../../config/config.json";
 @Injectable({
   providedIn: 'root'
 })
 export class AuthServiceService {
+  albumPhotos:any=[];
   userId:number
   usersData:any=[]
   signedIn:boolean=false;
@@ -38,11 +40,9 @@ handleError(error: HttpErrorResponse) {
   checkUserExistence(email,password,users){
     for(let i=0;i<users.length;i++){
       if(email===users[i].email){
-        if(password==="Pass@123"){
+        if(password===config.password){
           window.sessionStorage.setItem("UserData",JSON.stringify(users[i]));
-          console.log(users[i].name.split(" "))
           this.loggedInUserInitials=users[i].name.split(" ")[0][0] + users[i].name.split(" ")[1][0];
-          console.log(this.loggedInUserInitials);
           return true;
         }else{
           this.errorMessage="Invalid! password";
@@ -55,21 +55,19 @@ handleError(error: HttpErrorResponse) {
   }
 
   showUsers(){
-    let loggedInUserData=JSON.parse(sessionStorage.getItem("UserData"));
-    console.log(loggedInUserData.id)
-    this.usersData=this.usersData.filter(element=>{return element.id!==loggedInUserData.id});
+    let loggedInUserData = JSON.parse(sessionStorage.getItem("UserData"));
+    this.usersData = this.usersData.filter(element => { return element.id !== loggedInUserData.id });
     return this.usersData
   }
 
   filterUser(searchInput){
-    let data=[];
-    for(let i=0;i<this.usersData.length;i++){
-      if(this.usersData[i].email.toUpperCase()==searchInput || this.usersData[i].name.toUpperCase()==searchInput || this.usersData[i].company.name.toUpperCase()==searchInput){
-        console.log(this.usersData[i]);
+    let data = [];
+    for (let i = 0; i < this.usersData.length; i++) {
+      if (this.usersData[i].email.toUpperCase() == searchInput || this.usersData[i].name.toUpperCase() == searchInput || this.usersData[i].company.name.toUpperCase() == searchInput) {
         data.push(this.usersData[i]);
       }
     }
-    this.usersData=data;
+    this.usersData = data;
   }
 
   hideSearchbar(id:number){
@@ -84,6 +82,11 @@ handleError(error: HttpErrorResponse) {
 
   getAlbums(){
     return this.http.get("https://jsonplaceholder.typicode.com/albums").pipe(retry(3))
+  }
+
+  async getPhotos(albumId){
+    this.albumPhotos=await  this.http.get("https://jsonplaceholder.typicode.com/photos").pipe(retry(3)).toPromise()
+    this.albumPhotos=await this.albumPhotos.filter( photo=>{return  photo.albumId===albumId})
   }
 
   Logout(){
